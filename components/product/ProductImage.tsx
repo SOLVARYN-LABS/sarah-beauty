@@ -7,14 +7,15 @@ export function ProductImage({
   alt: string;
   className?: string;
 }) {
-  if (!src?.trim()) {
+  const photo = src?.trim().replace(/^\/uploads\//, "/api/uploads/");
+  if (!photo) {
     return <div className={`bg-[#efe7de] ${className ?? ""}`} aria-hidden />;
   }
-  if (/\.pdf($|\?)/i.test(src)) {
-    return <iframe title={alt || "Document PDF"} src={src} className={`bg-[#efe7de] ${className ?? ""}`} />;
+  if (/\.pdf($|\?)/i.test(photo)) {
+    return <iframe title={alt || "Document PDF"} src={photo} className={`bg-[#efe7de] ${className ?? ""}`} />;
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} className={className} />
+    <img src={photo} alt={alt} className={className} />
   );
 }

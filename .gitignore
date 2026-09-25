@@ -6,4 +6,6 @@ out
 .env*
 !.env.example
 cookies.txt
+data/uploads/*
+!data/uploads/.gitkeep
 tsconfig.tsbuildinfo

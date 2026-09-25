@@ -19,8 +19,8 @@ export async function POST(request: Request) {
   }
   const safeExt = extension === ".jpeg" ? ".jpg" : extension || (file.type === "application/pdf" ? ".pdf" : ".jpg");
   const name = `${crypto.randomUUID()}${safeExt}`;
-  const dir = path.join(process.cwd(), "public", "uploads");
+  const dir = path.join(process.cwd(), "data", "uploads");
   await mkdir(dir, { recursive: true });
   await writeFile(path.join(dir, name), Buffer.from(await file.arrayBuffer()));
-  return Response.json({ url: `/uploads/${name}` });
+  return Response.json({ url: `/api/uploads/${name}` });
 }
