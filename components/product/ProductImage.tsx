@@ -11,7 +11,7 @@ export function ProductImage({
   if (!photo) {
     return <div className={`bg-[#efe7de] ${className ?? ""}`} aria-hidden />;
   }
-  if (/\.pdf($|\?)/i.test(photo)) {
+  if (/\.pdf($|\?)/i.test(photo) || photo.startsWith("data:application/pdf")) {
     return <iframe title={alt || "Document PDF"} src={photo} className={`bg-[#efe7de] ${className ?? ""}`} />;
   }
   return (

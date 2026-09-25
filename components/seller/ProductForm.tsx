@@ -4,6 +4,46 @@ import { useState } from "react";
 import type { Product } from "@/lib/types";
 import { ProductImage } from "@/components/product/ProductImage";
 
+function readFile(file: File) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error("Lecture de la photo impossible."));
+    reader.readAsDataURL(file);
+  });
+}
+
+function fileToProductPhoto(file: File) {
+  const extension = file.name.split(".").pop()?.toLowerCase() ?? "";
+  const isPdf = file.type === "application/pdf" || extension === "pdf";
+  if (file.size > 8 * 1024 * 1024) return Promise.reject(new Error("Fichier trop lourd (8 Mo maximum)."));
+  if (isPdf) return readFile(file);
+  const isImage = file.type.startsWith("image/") || ["jpg", "jpeg", "png", "webp"].includes(extension);
+  if (!isImage) return Promise.reject(new Error("Choisis une photo JPG, PNG ou WEBP."));
+  return readFile(file).then(
+    (dataUrl) =>
+      new Promise<string>((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => {
+          const max = 1400;
+          const scale = Math.min(1, max / Math.max(image.width, image.height));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.max(1, Math.round(image.width * scale));
+          canvas.height = Math.max(1, Math.round(image.height * scale));
+          const context = canvas.getContext("2d");
+          if (!context) {
+            reject(new Error("Cette photo ne peut pas être préparée."));
+            return;
+          }
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/jpeg", 0.85));
+        };
+        image.onerror = () => reject(new Error("Cette photo ne peut pas être lue. Choisis un JPG ou un PNG."));
+        image.src = dataUrl;
+      }),
+  );
+}
+
 export function ProductForm({ initial, onSave }: { initial?: Product; onSave: (product: Product) => void }) {
   const [imageUrl, setImageUrl] = useState(initial?.images.find((image) => image.trim()) ?? "");
   const [uploading, setUploading] = useState(false);
@@ -13,15 +53,10 @@ export function ProductForm({ initial, onSave }: { initial?: Product; onSave: (p
     setUploadError("");
     setUploading(true);
     try {
-      const body = new FormData();
-      body.append("file", file);
-      const response = await fetch("/api/upload", { method: "POST", body });
-      const data = (await response.json()) as { url?: string; error?: string };
-      if (!response.ok || !data.url) {
-        setUploadError(data.error ?? "Envoi impossible.");
-        return;
-      }
-      setImageUrl(data.url);
+      const photo = await fileToProductPhoto(file);
+      setImageUrl(photo);
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "Cette photo ne peut pas être ajoutée.");
     } finally {
       setUploading(false);
     }
@@ -91,14 +126,14 @@ export function ProductForm({ initial, onSave }: { initial?: Product; onSave: (p
         >
           <input
             type="file"
-            accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
+            accept="image/jpeg,image/png,image/webp,image/jpg,.jpg,.jpeg,.png,.webp,.pdf,application/pdf"
             className="hidden"
             onChange={(event) => {
               const file = event.target.files?.[0];
               if (file) void uploadFile(file);
             }}
           />
-          {uploading ? "Envoi du fichier…" : "Déposer un fichier ici, ou cliquer pour choisir un JPG, PNG ou PDF"}
+          {uploading ? "Préparation de la photo…" : "Choisir une photo dans la galerie (JPG, PNG ou WEBP)"}
         </label>
         {uploadError && <p className="text-danger text-sm">{uploadError}</p>}
         {imageUrl && <ProductImage src={imageUrl} alt="Aperçu" className="h-40 w-32 object-cover" />}
