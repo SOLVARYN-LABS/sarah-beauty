@@ -7,7 +7,7 @@ export function WhatsAppButton() {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-5 end-5 z-30 bg-[#1f6b45] text-cream text-xs tracking-[0.14em] px-4 py-3 shadow-lg"
+      className="fixed bottom-4 end-4 z-30 bg-[#1f6b45] text-cream text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-[0.14em] px-3 py-2.5 shadow-lg"
     >
       WHATSAPP · {WHATSAPP_DISPLAY}
     </a>

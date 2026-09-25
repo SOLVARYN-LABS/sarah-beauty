@@ -7,7 +7,7 @@ import { useI18n } from "@/lib/i18n";
 export function Footer() {
   const { t, locale } = useI18n();
   return (
-    <footer className="bg-plum-deep text-[#f3ebe4] mt-16">
+    <footer className="bg-plum-deep text-[#f3ebe4] mt-16 pb-16 sm:pb-0">
       <div className="max-w-7xl mx-auto px-6 py-14 grid gap-10 md:grid-cols-4">
         <div>
           <p className="font-serif tracking-[0.2em] text-lg">BOUTIQUE AYLA</p>

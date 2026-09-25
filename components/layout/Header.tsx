@@ -31,16 +31,16 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40">
-      <div className="bg-plum text-center text-[10px] tracking-[0.22em] text-[#f4ece4] uppercase py-2 px-4">
+      <div className="bg-plum text-center text-[9px] leading-4 tracking-[0.04em] sm:text-[10px] sm:tracking-[0.22em] text-[#f4ece4] uppercase py-2 px-3">
         {t("announce")}
       </div>
       <div className="bg-cream/95 backdrop-blur border-b border-line">
-        <div className="mx-auto max-w-7xl px-4 md:px-6 h-16 flex items-center gap-4">
-          <button className="lg:hidden" onClick={() => setOpen(true)} aria-label={t("menu")}>
+        <div className="mx-auto max-w-7xl px-3 md:px-6 h-14 sm:h-16 flex items-center gap-2">
+          <button className="lg:hidden shrink-0 p-1" onClick={() => setOpen(true)} aria-label={t("menu")}>
             <Menu size={20} />
           </button>
-          <Link href="/" className="font-serif text-xl tracking-[0.18em] text-plum shrink-0">
-            BOUTIQUE AYLA <span className="text-champagne">04</span>
+          <Link href="/" className="font-serif text-[17px] sm:text-xl tracking-[0.04em] sm:tracking-[0.18em] text-plum min-w-0 truncate">
+            <span className="hidden sm:inline">BOUTIQUE </span>AYLA <span className="text-champagne">04</span>
           </Link>
           <nav className="hidden lg:flex items-center gap-5 mx-auto text-[13px] text-ink/80">
             {navLinks.map((link) => (
@@ -53,18 +53,18 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <div className="ms-auto flex items-center gap-3 text-plum">
-            <div className="flex text-[11px] tracking-[0.12em] border border-line">
-              <button type="button" onClick={() => setLocale("fr")} className={`px-2 py-1 ${locale === "fr" ? "bg-plum text-cream" : ""}`}>FR</button>
-              <button type="button" onClick={() => setLocale("ar")} className={`px-2 py-1 ${locale === "ar" ? "bg-plum text-cream" : ""}`}>عربي</button>
+          <div className="ms-auto flex items-center gap-1 text-plum shrink-0">
+            <div className="flex text-[10px] sm:text-[11px] border border-line">
+              <button type="button" onClick={() => setLocale("fr")} className={`px-1.5 sm:px-2 py-1 ${locale === "fr" ? "bg-plum text-cream" : ""}`}>FR</button>
+              <button type="button" onClick={() => setLocale("ar")} className={`px-1.5 sm:px-2 py-1 ${locale === "ar" ? "bg-plum text-cream" : ""}`}>عربي</button>
             </div>
-            <button aria-label={t("search")} onClick={() => setSearchOpen((v) => !v)}>
+            <button className="p-1" aria-label={t("search")} onClick={() => setSearchOpen((v) => !v)}>
               <Search size={18} />
             </button>
-            <Link href="/compte" aria-label={t("account")}>
+            <Link href="/compte" className="hidden sm:inline p-1" aria-label={t("account")}>
               <User size={18} />
             </Link>
-            <Link href="/wishlist" className="relative" aria-label={t("wishlist")}>
+            <Link href="/wishlist" className="relative hidden sm:inline p-1" aria-label={t("wishlist")}>
               <Heart size={18} />
               {wishlist.length > 0 && (
                 <span className="absolute -top-2 -right-2 text-[10px] bg-plum text-cream rounded-full w-4 h-4 grid place-items-center">
@@ -72,7 +72,7 @@ export function Header() {
                 </span>
               )}
             </Link>
-            <button className="relative" aria-label={t("cart")} onClick={() => setCartOpen(true)}>
+            <button className="relative p-1" aria-label={t("cart")} onClick={() => setCartOpen(true)}>
               <ShoppingBag size={18} />
               {count > 0 && (
                 <span className="absolute -top-2 -right-2 text-[10px] bg-plum text-cream rounded-full w-4 h-4 grid place-items-center">
@@ -112,6 +112,12 @@ export function Header() {
                   {t(link.key)}
                 </Link>
               ))}
+              <Link href="/compte" onClick={() => setOpen(false)} className="text-lg font-serif sm:hidden">
+                {t("account")}
+              </Link>
+              <Link href="/wishlist" onClick={() => setOpen(false)} className="text-lg font-serif sm:hidden">
+                {t("wishlist")}
+              </Link>
               <Link href="/seller" onClick={() => setOpen(false)} className="text-sm tracking-[0.14em] mt-4">
                 {t("seller")}
               </Link>
