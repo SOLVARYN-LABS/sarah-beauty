@@ -8,6 +8,7 @@ import { navLinks } from "@/lib/catalog";
 import { useI18n } from "@/lib/i18n";
 import { useStore } from "@/lib/store";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { Logo } from "@/components/brand/Logo";
 
 export function Header() {
   const pathname = usePathname();
@@ -39,8 +40,8 @@ export function Header() {
           <button className="lg:hidden shrink-0 p-1" onClick={() => setOpen(true)} aria-label={t("menu")}>
             <Menu size={20} />
           </button>
-          <Link href="/" className="font-serif text-[13px] min-[400px]:text-sm sm:text-xl tracking-[0.08em] sm:tracking-[0.18em] text-plum whitespace-nowrap">
-            BOUTIQUE AYLA
+          <Link href="/" className="min-w-0" aria-label="SARAH BEAUTY">
+            <Logo compact />
           </Link>
           <nav className="hidden lg:flex items-center gap-5 mx-auto text-[13px] text-ink/80">
             {navLinks.map((link) => (
@@ -101,7 +102,7 @@ export function Header() {
         <div className="fixed inset-0 z-50 bg-plum-deep/40 lg:hidden" onClick={() => setOpen(false)}>
           <div className="bg-cream h-full w-80 p-6" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-8">
-              <span className="font-serif tracking-[0.12em]">BOUTIQUE AYLA</span>
+              <Logo compact />
               <button onClick={() => setOpen(false)} aria-label={t("close")}>
                 <X size={18} />
               </button>

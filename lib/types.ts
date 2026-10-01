@@ -1,8 +1,14 @@
 export type CategorySlug =
-  | "brosses"
   | "maquillage"
-  | "vetements"
+  | "soins-peau"
   | "soins-capillaires"
+  | "parfums"
+  | "vetements"
+  | "accessoires"
+  | "bijoux"
+  | "sacs"
+  | "ongles"
+  | "brosses"
   | "sacs-pochettes"
   | "bijoux-accessoires";
 

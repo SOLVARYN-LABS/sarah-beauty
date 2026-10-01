@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { useStore } from "@/lib/store";
 import { useI18n } from "@/lib/i18n";
+import { Logo } from "@/components/brand/Logo";
 
 const links = [
   { href: "/seller", key: "seller.overview" },
@@ -41,7 +42,7 @@ export function SellerShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen grid lg:grid-cols-[250px_1fr] bg-ivory">
       <aside className="bg-plum-deep text-[#f4ece4] p-6 flex flex-col">
-        <p className="font-serif tracking-[0.22em] text-lg">AYLA 04</p>
+        <Logo light compact />
         <div className="mt-4 flex text-[11px] border border-white/20 w-fit">
           <button type="button" onClick={() => setLocale("fr")} className={`px-2 py-1 ${locale === "fr" ? "bg-white/15" : ""}`}>FR</button>
           <button type="button" onClick={() => setLocale("ar")} className={`px-2 py-1 ${locale === "ar" ? "bg-white/15" : ""}`}>عربي</button>

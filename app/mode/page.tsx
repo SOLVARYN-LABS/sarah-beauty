@@ -6,7 +6,7 @@ import { CatalogView } from "@/components/product/CatalogView";
 export default function Page() {
   return (
     <Suspense>
-      <CatalogView title="Mode" intro="Pochettes et pièces à porter avec une routine Ayla." preset={(p) => p.universe === "Mode" || p.category === "vetements" || p.category === "sacs-pochettes"} />
+      <CatalogView title="Mode" intro="Vêtements, sacs et pièces à porter au quotidien." preset={(p) => p.universe === "Mode" || p.category === "vetements" || p.category === "sacs" || p.category === "sacs-pochettes"} />
     </Suspense>
   );
 }

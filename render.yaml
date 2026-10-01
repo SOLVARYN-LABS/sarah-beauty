@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: boutique-ayla
+    name: sarah-beauty
     runtime: node
     plan: free
     buildCommand: npm install && npm run build
@@ -9,6 +9,6 @@ services:
       - key: NODE_VERSION
         value: "22"
       - key: SELLER_EMAIL
-        value: djohar@boutiqueayla.dz
+        value: sarah@sarahbeauty.dz
       - key: SELLER_PASSWORD
         sync: false

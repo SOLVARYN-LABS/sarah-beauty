@@ -25,8 +25,8 @@ const arabic = Noto_Naskh_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "Boutique Ayla 04",
-  description: "Beauté, cheveux et élégance algérienne. Livraison 69 wilayas, paiement à la livraison.",
+  title: "Sarah Beauty",
+  description: "Maquillage, soins, parfums, vêtements et accessoires. Livraison 69 wilayas, paiement à la livraison.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

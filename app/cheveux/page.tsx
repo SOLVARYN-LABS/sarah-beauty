@@ -6,7 +6,7 @@ import { CatalogView } from "@/components/product/CatalogView";
 export default function Page() {
   return (
     <Suspense>
-      <CatalogView title="Cheveux" intro="Brosses chauffantes, styling et soins de la fibre." preset={(p) => p.universe === "Cheveux" || p.category === "brosses"} />
+      <CatalogView title="Cheveux" intro="Soins capillaires, brosses et outils de styling." preset={(p) => p.universe === "Cheveux" || p.category === "brosses" || p.category === "soins-capillaires"} />
     </Suspense>
   );
 }

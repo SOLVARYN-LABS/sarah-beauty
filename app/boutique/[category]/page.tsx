@@ -41,7 +41,7 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
   const known = categories.find((c) => c.slug === category);
   const copy = titles[category] ?? {
     title: known?.title ?? "Collection",
-    intro: known?.subtitle ?? "Sélection Boutique Ayla.",
+    intro: known?.subtitle ?? "Sélection Sarah Beauty.",
   };
   return (
     <Suspense>

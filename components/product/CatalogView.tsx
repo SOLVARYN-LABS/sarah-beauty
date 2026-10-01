@@ -54,7 +54,7 @@ export function CatalogView({
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
-      <p className="text-[11px] tracking-[0.2em] uppercase text-muted">Collection officielle Ayla</p>
+      <p className="text-[11px] tracking-[0.2em] uppercase text-muted">Collection officielle Sarah Beauty</p>
       <h1 className="font-serif text-4xl md:text-5xl mt-2 max-w-3xl">{title}</h1>
       <p className="text-muted max-w-2xl mt-3">{intro}</p>
       <div className="grid lg:grid-cols-[260px_1fr] gap-8 mt-10">

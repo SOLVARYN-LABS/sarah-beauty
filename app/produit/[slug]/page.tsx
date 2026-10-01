@@ -2,7 +2,6 @@
 
 import { use, useState } from "react";
 import Link from "next/link";
-import { WHATSAPP } from "@/lib/catalog";
 import { formatDA } from "@/lib/format";
 import { useStore } from "@/lib/store";
 import { DeliveryCalculator } from "@/components/delivery/DeliveryCalculator";
@@ -24,8 +23,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
   const photos = product.images.filter((src) => src.trim());
   const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
-  const wa = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Bonjour, je souhaite la ${product.name} (${product.sku}).`)}`;
-
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <p className="text-xs text-muted mb-6"><Link href="/boutique">Boutique</Link> / {product.name}</p>
@@ -69,7 +66,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
               Ajouter au panier
             </button>
             <Link href="/checkout" onClick={() => add(product.id, qty)} className="btn-ghost px-6 py-3">Acheter maintenant</Link>
-            <a href={wa} target="_blank" rel="noreferrer" className="btn-ghost px-6 py-3">WhatsApp</a>
           </div>
           {notice && <p className="text-sm text-success mt-3">{notice}</p>}
           <ul className="mt-6 space-y-2 text-sm">

@@ -44,7 +44,7 @@ export default function CartPage() {
           </div>
           <aside className="card-soft p-5 h-fit space-y-3">
             <div className="flex gap-2">
-              <input value={coupon} onChange={(e) => setCoupon(e.target.value)} placeholder="AYLA10" className="field" />
+              <input value={coupon} onChange={(e) => setCoupon(e.target.value)} placeholder="SARAH10" className="field" />
               <button className="btn-ghost px-3" onClick={() => setApplied(coupon)}>OK</button>
             </div>
             <p className="flex justify-between text-sm"><span>Sous-total</span><span>{formatDA(subtotal)}</span></p>

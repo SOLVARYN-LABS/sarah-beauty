@@ -27,7 +27,7 @@ export default function SellerHome() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="text-[11px] tracking-[0.18em] uppercase text-muted">Boutique officielle Algérie</p>
-          <h1 className="font-serif text-4xl">Boutique Ayla 04</h1>
+          <h1 className="font-serif text-4xl">Sarah Beauty</h1>
         </div>
         <div className="flex gap-2 text-xs">
           <span className="border border-line px-3 py-2">En ligne</span>

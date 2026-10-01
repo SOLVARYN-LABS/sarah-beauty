@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Product } from "@/lib/types";
+import { categories } from "@/lib/catalog";
 import { ProductImage } from "@/components/product/ProductImage";
 
 function readFile(file: File) {
@@ -100,14 +101,15 @@ export function ProductForm({ initial, onSave }: { initial?: Product; onSave: (p
       <label className="text-xs uppercase tracking-[0.12em]">Ancien prix<input name="oldPrice" type="number" defaultValue={initial?.oldPrice ?? ""} className="field mt-1" /></label>
       <label className="text-xs uppercase tracking-[0.12em]">Stock<input name="stock" type="number" defaultValue={initial?.stock ?? 10} required className="field mt-1" /></label>
       <label className="text-xs uppercase tracking-[0.12em]">Catégorie
-        <select name="category" defaultValue={initial?.category ?? "brosses"} className="field mt-1">
-          <option value="brosses">Brosses</option>
-          <option value="vetements">Vêtements</option>
+        <select name="category" defaultValue={initial?.category ?? "maquillage"} className="field mt-1">
+          {categories.map((category) => (
+            <option key={category.slug} value={category.slug}>{category.title}</option>
+          ))}
         </select>
       </label>
       <label className="text-xs uppercase tracking-[0.12em]">Univers
         <select name="universe" defaultValue={initial?.universe ?? "Cheveux"} className="field mt-1">
-          <option>Cheveux</option><option>Beauté</option><option>Mode</option><option>Accessoires</option>
+          <option>Beauté</option><option>Cheveux</option><option>Parfums</option><option>Mode</option><option>Accessoires</option><option>Bijoux</option>
         </select>
       </label>
       <label className="text-xs uppercase tracking-[0.12em]">Badge<input name="badge" defaultValue={initial?.badge} className="field mt-1" /></label>

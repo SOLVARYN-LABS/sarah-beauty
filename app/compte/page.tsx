@@ -6,8 +6,8 @@ export default function ComptePage() {
   const [sent, setSent] = useState(false);
   return (
     <div className="max-w-xl mx-auto px-4 py-16">
-      <h1 className="font-serif text-5xl">Le Club Ayla</h1>
-      <p className="text-muted mt-3">Laissez votre e-mail pour les avant-premières. Le suivi de commande reste disponible via votre numéro, transmis par WhatsApp.</p>
+      <h1 className="font-serif text-5xl">Le Club Sarah</h1>
+      <p className="text-muted mt-3">Laissez votre e-mail pour les avant-premières. Le suivi de commande reste disponible avec votre numéro de commande.</p>
       {sent ? (
         <p className="mt-6 text-success">Merci. Vous êtes sur la liste de la maison.</p>
       ) : (

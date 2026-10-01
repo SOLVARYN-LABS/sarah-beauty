@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useStore } from "@/lib/store";
 import { useI18n } from "@/lib/i18n";
+import { Logo } from "@/components/brand/Logo";
 
 export default function SellerLoginPage() {
   const login = useStore((s) => s.loginSeller);
@@ -27,7 +28,7 @@ export default function SellerLoginPage() {
           });
         }}
       >
-        <p className="font-serif tracking-[0.2em]">AYLA 04</p>
+        <Logo />
         <div className="mt-4 flex text-[11px] border border-line w-fit">
           <button type="button" onClick={() => setLocale("fr")} className={`px-2 py-1 ${locale === "fr" ? "bg-plum text-cream" : ""}`}>FR</button>
           <button type="button" onClick={() => setLocale("ar")} className={`px-2 py-1 ${locale === "ar" ? "bg-plum text-cream" : ""}`}>عربي</button>

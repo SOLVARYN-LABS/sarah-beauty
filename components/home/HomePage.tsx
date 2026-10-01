@@ -22,7 +22,7 @@ const insta = [
 export function HomePage() {
   const products = useStore((s) => s.products);
   const featured = products.slice(0, 4);
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
 
   return (
     <div>
@@ -34,7 +34,7 @@ export function HomePage() {
           </h1>
           <p className="text-muted max-w-xl mt-5 leading-relaxed">{t("hero.text")}</p>
           <div className="flex flex-wrap gap-3 mt-7">
-            <Link href="/boutique/brosses" className="btn-dark px-6 py-3">{t("hero.cta")}</Link>
+            <Link href="/boutique/maquillage" className="btn-dark px-6 py-3">{t("hero.cta")}</Link>
             <Link href="/nouveautes" className="btn-ghost px-6 py-3">{t("hero.news")}</Link>
           </div>
           <div className="grid grid-cols-3 gap-3 mt-10 max-w-lg">
@@ -47,7 +47,7 @@ export function HomePage() {
         </div>
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={hero} alt="Portrait Boutique Ayla" className="w-full aspect-[4/5] object-cover" />
+          <img src={hero} alt="Portrait Sarah Beauty" className="w-full aspect-[4/5] object-cover" />
         </div>
       </section>
 
@@ -56,9 +56,16 @@ export function HomePage() {
           <h2 className="font-serif text-4xl">{t("univers")}</h2>
           <Link href="/boutique" className="text-xs tracking-[0.16em] uppercase">{t("shopAll")}</Link>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((cat, index) => (
-            <CategoryCard key={cat.slug} href={`/boutique/${cat.slug}`} title={t(cat.slug === "brosses" ? "cat.brosses" : "cat.vetements")} subtitle={t(cat.slug === "brosses" ? "cat.brosses.sub" : "cat.vetements.sub")} image={cat.image} delay={index * 180} />
+            <CategoryCard
+              key={cat.slug}
+              href={`/boutique/${cat.slug}`}
+              title={locale === "ar" ? cat.titleAr : cat.title}
+              subtitle={cat.subtitle}
+              image={cat.image}
+              delay={index * 80}
+            />
           ))}
         </div>
       </section>
@@ -110,7 +117,7 @@ export function HomePage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
           {insta.map((src) => (
             // eslint-disable-next-line @next/next/no-img-element
-            <img key={src} src={src} alt="Routine Ayla" className="aspect-square object-cover" />
+            <img key={src} src={src} alt="Routine Sarah Beauty" className="aspect-square object-cover" />
           ))}
         </div>
       </section>
